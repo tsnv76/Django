@@ -1,0 +1,26 @@
+{% load static %}
+<div class="slider">
+			<div class="header clearfix">
+				<a href="/" class="logo"></a>
+				<ul class="menu">
+					<li><a href="{% url 'main' %} class="{% if request == '/' %}active{% endif %}">домой</a></li>
+					<li><a href="{% url 'products:main' %}">продукты</a></li>
+					<li><a href="{% url 'contacts' %}">контакты</a></li>
+				</ul>
+				<a href="#" class="search"></a>
+			</div>
+			<div class="text-slider">
+				<!--<h3 class="green">тенденции {% now "Y"%} - добрый день, {{ user.first_name|default:"Noname" }} {{ user.first_name }} </h3>-->
+				<h3 class="green">тенденции {% now "Y"%}</h3>
+				{% if user.is_authenticated %}
+				    <h3 class="big"> удобные стулья</h3>
+				{% else %}
+				    <h3 class="big"> закончились стулья</h3>
+				{% endif %}
+				<p>Новый уровень комфорта. Отличные характеристики.</p>
+				<a href="#" class="button-order">заказать <img src="{% static 'geekshop/img/arrow.png' %}" alt=""></a>
+			</div>
+			<div class="navi">
+				<a href="#"></a><a href="#"></a><a href="#"></a>
+			</div>
+</div>

@@ -1,0 +1,10 @@
+.red {
+	text-transform: uppercase;
+	color: #e53935;
+	font-size: 18px;
+	font-weight: 700;
+	text-align: left;
+	letter-spacing: 1px;
+	line-height: 17px;
+	margin-bottom: 22px;
+}
