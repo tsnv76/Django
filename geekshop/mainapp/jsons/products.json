@@ -1,0 +1,55 @@
+[
+  {
+      "category": "Столы",
+      "name": "Деревянный",
+      "image": "products_images/wood.jpg",
+      "short_desc": "",
+      "description": "",
+      "price": "4000.00",
+      "quantity": 100
+  },
+  {
+    "category": "Стулья",
+    "name": "Пластиковый",
+    "image": "products_images/plast.jpeg",
+    "short_desc": "Стул пластиковый",
+    "description": "Дешевый, доступный",
+    "price": "1000.00",
+    "quantity": 50
+  },
+  {
+      "category": "Столы",
+      "name": "Современный стол",
+      "image": "",
+      "short_desc": "",
+      "description": "",
+      "price": "4500.00",
+      "quantity": 100
+  },
+  {
+      "category": "Дом",
+      "name": "Кресло 1",
+      "image": "products_images/product-2.jpg",
+      "short_desc": "Мягкое кресло",
+      "description": "",
+      "price": "6000.00",
+      "quantity": 10
+  },
+  {
+      "category": "Модерн",
+      "name": "Диван",
+      "image": "products_images/product-3-sm.jpg",
+      "short_desc": "Современный мягкий диван",
+      "description": "",
+      "price": "15000.00"
+  },
+  {
+      "category": "Офис",
+      "name": "Кресло",
+      "image": "products_images/product-4.jpg",
+      "short_desc": "Офисный стул",
+      "description": "",
+      "price": "5000.00",
+      "quantity": 10
+  }
+]
