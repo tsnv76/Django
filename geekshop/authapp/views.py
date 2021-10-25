@@ -5,7 +5,6 @@ from django.contrib import auth
 from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
 
 
-
 def login(request):
     title = 'Вход'
 
@@ -19,12 +18,13 @@ def login(request):
             auth.login(request, user)
             return HttpResponseRedirect(reverse('main'))
 
-    contex = {
+    context = {
         'title': title,
         'login_form': login_form
     }
 
-    return render(request, 'authapp/login.html', contex)
+    return render(request, 'authapp/login.html', context)
+
 
 def logout(request):
     auth.logout(request)
@@ -69,4 +69,3 @@ def edit(request):
     }
 
     return render(request, 'authapp/edit.html', context)
-

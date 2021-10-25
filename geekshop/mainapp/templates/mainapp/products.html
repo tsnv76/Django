@@ -13,7 +13,6 @@
 					<li><a href="/">домой</a></li>
 					<li><a href="/products/" class="active">продукты</a></li>
 					<li><a href="/contacts/">контакты</a></li>
-
 				</ul>
 				<a href="#" class="search"></a>
                 <a href="#" class="basket"></a>
@@ -22,10 +21,18 @@
 		<div class="details">
 			<div class="links clearfix">
 				<ul class="links-menu">
-					{% for link in links_menu %}
-					    <li><a href="{{ link.href }}" class="{% if request.resolver_match.url_name == link.href %}
-					        active
-						{% endif %}">{{ link.name }}</a></li>
+						 <li><a href="{% url 'products:category' 0 %}" class="
+								{% if request.resolver_match.kwargs.pk == 0 %}
+								    active
+						        {% endif %}">Все</a>
+						 </li>
+						{% for link in links_menu %}
+					    <li><a href="{% url 'products:category' link.pk %}" class="
+					        	{% if request.resolver_match.kwargs.pk|add:'0' == link.pk %}
+					           	 active
+						    	{% endif %}">{{ link.name }}
+							</a>
+						</li>
 					{% endfor %}
 				</ul>
 			</div>
@@ -71,6 +78,29 @@
 					</div>
 				</div>
 			</div>
+			<div class="products_list">
+				<div class="title clearfix">
+					{% if category %}
+					<h2>
+						Категория: "{{ category.name|title }}"
+					</h2>
+					{% endif %}}
+				</div>
+				<div class="category-products clearfix">
+					{% for product in products %}
+					    <div class="block">
+							<a href="{% url 'basket:add' product.pk %}">
+								<img src="/media/{{ product.image}}" alt="product">
+								<div class="text">
+									<img src="{% static 'img/icon-hover.png' %}" alt="hover">
+									<h4>{{ product.name }}</h4>
+									<p>{{ product.description}}</p>
+								</div>
+							</a>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
 
 			<div class="related">
 				<div class="title clearfix">
@@ -78,33 +108,18 @@
 					<a class="explore" href="#">показать все <img src="{% static 'geekshop/img/arrow.png' %}" alt=""></a>
 				</div>
 				<div class="related-products clearfix">
-					<div class="block">
-						<a href="#"><img src="{% static 'geekshop/img/product-11.jpg' %}" alt="">
+					{% for same_product in same_products %}
+					    <div class="block">
+						<a href="#"><img src="/media/{{ same_product.image }}" alt="">
 							<div class="text">
 								<img src="{% static 'geekshop/img/icon-hover.png' %}" alt="img">
-								<h4>Стул повышенного качества</h4>
-								<p>Не оторваться. </p>
+								<h4>{{ same_product.name }}</h4>
+								<p>{{ same_product.description}}</p>
 							</div>
 						</a>
 					</div>
-					<div class="block">
-						<a href="#"><img src="{% static 'geekshop/img/product-21.jpg' %}" alt="">
-							<div class="text">
-								<img src="{% static 'geekshop/img/icon-hover.png' %}" alt="img">
-								<h4>Стул повышенного качества</h4>
-								<p>Не оторваться. </p>
-							</div>
-						</a>
-					</div>
-					<div class="block">
-						<a href="#"><img src="{% static 'geekshop/img/product-31.jpg' %}" alt="">
-							<div class="text">
-								<img src="{% static 'geekshop/img/icon-hover.png' %}" alt="img">
-								<h4>Стул повышенного качества</h4>
-								<p>Не оторваться. </p>
-							</div>
-						</a>
-					</div>
+					{% endfor %}
+
 
 				</div>
 			</div>

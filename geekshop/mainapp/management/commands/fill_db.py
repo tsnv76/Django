@@ -2,7 +2,6 @@ from django.core.management.base import BaseCommand
 import json, os
 
 from mainapp.models import ProductCategory, Product
-
 from authapp.models import ShopUser
 
 JSON_PATH = 'mainapp/jsons'
