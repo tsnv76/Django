@@ -21,7 +21,7 @@ def get_same_products(hot_product):
     return same_product
 
 
-def products(request,pk=None):
+def products(request, pk=None):
     title = 'Каталог'
     links_menu = ProductCategory.objects.all()
     products = Product.objects.all().order_by('price')
@@ -56,3 +56,17 @@ def products(request,pk=None):
     }
 
     return render(request, 'mainapp/products.html', context)
+
+
+def product(request, pk):
+    title = 'Детали'
+    product = get_object_or_404(Product, pk=pk)
+    context = {
+        'title': title,
+        'links_menu': ProductCategory.objects.all(),
+        'product': product,
+        'same_products': get_same_products(product),
+        'basket': get_basket(request.user),
+    }
+    return render(request, 'mainapp/product.html', context)
+
