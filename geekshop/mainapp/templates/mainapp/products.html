@@ -7,39 +7,7 @@
 
 {% block content %}
 		<div class="hero-white">
-			<div class="header clearfix">
-				<a href="/" class="logo"></a>
-				<ul class="menu">
-					<li><a href="/">домой</a></li>
-					<li><a href="/products/" class="active">продукты</a></li>
-					<li><a href="/contacts/">контакты</a></li>
-					{% if user.is_authenticated %}
-						<li>
-							<a href="{% url 'auth:edit' %}">
-								{{ user.first_name|default:'Пользователь' }}
-							</a>
-						</li>
-						{% if basket %}
-							<li>
-								<a href="{% url 'basket:view' %}">Корзина</a>
-								<span>
-									{{ basket.0.total_cost|floatformat:0 }} руб.
-									({{ basket.0.total_quantity }} шт.)
-								</span>
-							</li>
-						{% endif %}
-					{% endif %}
-					<li>
-						{% if user.is_authenticated %}
-						  <a href="{% url 'auth:logout' %}">выйти</a>
-						{% else %}
-						  <a href="{% url 'auth:login' %}">войти</a>
-						{% endif %}
-					</li>
-				</ul>
-				<a href="#" class="search"></a>
-                <a href="#" class="basket"></a>
-			</div>
+			{% include 'geekshop/includes/inc_main_menu.html' %}
 		</div>
 		<div class="details">
 			<div class="links clearfix">

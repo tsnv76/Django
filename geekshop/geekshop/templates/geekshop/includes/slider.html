@@ -1,40 +1,7 @@
 {% load static %}
 <div class="slider">
-			<div class="header clearfix">
-				<a href="/" class="logo"></a>
-				<ul class="menu">
-					<li><a href="{% url 'main' %}" class="{% if request == '/' %}active{% endif %}">домой</a></li>
-					<li><a href="{% url 'products:main' %}">продукты</a></li>
-					<li><a href="{% url 'contacts' %}">контакты</a></li>
-					{% if user.is_authenticated %}
-						<li>
-							<a href="{% url 'auth:edit' %}">
-								{{ user.first_name|default:'Пользователь' }}
-							</a>
-						</li>
-						{% if basket %}
-							<li>
-								<a href="{% url 'basket:view' %}">Корзина</a>
-								<span>
-									{{ basket.0.total_cost|floatformat:0 }} руб.
-									({{ basket.0.total_quantity }} шт.)
-								</span>
-							</li>
-						{% endif %}
-					{% endif %}
-					<li>
-						{% if user.is_authenticated %}
-						  <a href="{% url 'auth:logout' %}">выйти</a>
-						{% else %}
-						  <a href="{% url 'auth:login' %}">войти</a>
-						{% endif %}
-					</li>
+	{% include 'geekshop/includes/inc_main_menu.html' %}
 
-
-				</ul>
-				<a href="#" class="search"></a>
-
-			</div>
 			<div class="text-slider">
 				<!--<h3 class="green">тенденции {% now "Y"%} - добрый день, {{ user.first_name|default:"Noname" }} {{ user.first_name }} </h3>-->
 				<h3 class="green">тенденции {% now "Y"%}</h3>
