@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse, get_object_or_404
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 
 from adminapp.forms import ShopUserAdminEditForm, ProductEditForm, ProductCategoryEditForm
 from authapp.forms import ShopUserRegisterForm
@@ -66,40 +67,62 @@ def categories(request):
     return render(request, 'adminapp/categories.html', content)
 
 
-def category_create(request, pk):
-
-    title = 'категории/создание'
-
-    if request.method == 'POST':
-        category_form = ProductCategoryEditForm(request.POST, request.FILES, pk=pk)
-        if category_form.is_valid():
-            category_form.save()
-            return HttpResponseRedirect(reverse('admin_staff:categories', args=[pk]))
-    else:
-        category_form = ProductCategoryEditForm()
-
-    context = {
-        'title': title,
-        'category_form': category_form
-    }
-
-    return render(request, 'adminapp/category_create.html', context)
+class ProductCategoryCreateView(LoginRequiredMixin, CreateView):
+    model = ProductCategory
+    template_name = 'adminapp/category_create.html'
+    success_url = reverse_lazy('admin_staff:categories')
+    fields = '__all__'
 
 
-def category_update(request, pk):
-    pass
-
-
-# class CategoryDeleteView(DeleteView):
-#     model = ProductCategory
-#     template_name = 'adminapp/category_delete.html'
-#     success_url = reverse_lazy('admin_staff:category_delete')
+# def category_create(request):
+#     title = 'категории/создание'
 #
-#     def delete(self, request, *args, **kwargs):
-#         self.object = self.get_object()
-#         self.object.is_active = False
-#         self.object.save()
+#     if request.method == 'POST':
+#         category_form = ProductCategoryEditForm(request.POST, request.FILES)
+#         if category_form.is_valid():
+#             category_form.save()
+#             return HttpResponseRedirect(reverse('admin_staff:category_create'))
+#     else:
+#         category_form = ProductCategoryEditForm()
+#
+#     context = {
+#         'title': title,
+#         'category_form': category_form,
+#     }
+#
+#     return render(request, 'adminapp/category_update.html', context)
 
+class ProductCategoryUpdateView(LoginRequiredMixin, CreateView):
+    model = ProductCategory
+    template_name = 'adminapp/category_update.html'
+    success_url = reverse_lazy('admin_staff:categories')
+    fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'категории/редактирование'
+        return context
+
+#
+#
+# def category_update(request, pk):
+#     title = 'категории/редактирование'
+#     category = get_object_or_404(ProductCategory, pk=pk)
+#
+#     if request.method == 'POST':
+#         category_form = ProductCategoryEditForm(request.POST, request.FILES)
+#         if category_form.is_valid():
+#             category_form.save()
+#             return HttpResponseRedirect(reverse('admin_staff:category_update', args=[category.pk]))
+#     else:
+#         category_form = ProductCategoryEditForm()
+#
+#     context = {
+#         'title': title,
+#         'category_form': category_form
+#     }
+#
+#     return render(request, 'adminapp/category_update.html', context)
 
 def category_delete(request, pk):
 

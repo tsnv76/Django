@@ -40,7 +40,7 @@
                                     <a href="{% url 'admin_staff:category_read' category.pk %}">Detail</a>
                                 </td>
                                 <td class="text-center">
-                                     <a href="{#% url 'admin_staff:product_update' product.pk %#}">Edit</a>
+                                     <a href="{% url 'admin_staff:category_update' category.pk %}">Edit</a>
                                 </td>
                                 <td>
                                     <a {% if not category.is_active %} class="invisible" {% endif %} href="{% url 'admin_staff:category_delete' pk=category.pk %}">Delete</a>
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="{#% url 'admin_staff:category_create' category.pk %#}">
+                <a href="{% url 'admin_staff:category_create'%}">
                     <button class="btn btn-success">Создать категорию</button>
                 </a>
             </div>
