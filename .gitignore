@@ -1,1 +1,11 @@
 /geekshop/db.sqlite3
+/geekshop/mainapp/migrations/
+/geekshop/authapp/migrations/
+.idea
+~/__pycache__/
+*.pyc
+
+/geekshop/authapp/migrations/
+/geekshop/basketapp/migrations/
+/geekshop/geekshop/migrations/
+/geekshop/mainapp/migrations/
