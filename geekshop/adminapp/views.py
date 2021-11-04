@@ -98,10 +98,10 @@ class ProductCategoryUpdateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('admin_staff:categories')
     fields = '__all__'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'категории/редактирование'
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['title'] = 'категории/редактирование'
+    #     return context
 
 #
 #
