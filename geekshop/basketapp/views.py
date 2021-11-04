@@ -38,10 +38,10 @@ def basket_add(request, pk):
 def basket_remove(request, pk):
     basket_record = get_object_or_404(Basket, pk=pk)
     basket_record.delete()
+
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-@login_required
 def basket_edit(request, pk, quantity):
     if request.is_ajax():
         quantity = int(quantity)
@@ -53,16 +53,12 @@ def basket_edit(request, pk, quantity):
         else:
             new_basket_item.delete()
 
-        basket = Basket.objects.filter(user=request.user). \
-            order_by('product__category')
+        basket_items = Basket.objects.filter(user=request.user).order_by('product__category')
 
-        content = {
-            'basket': basket,
+        context = {
+            'basket': basket_items
         }
 
-        result = render_to_string('basketapp/includes/inc_basket_list.html', \
-                                  content)
+        result = render_to_string('basketapp/includes/inc_basket_list.html', context)
 
         return JsonResponse({'result': result})
-
-
