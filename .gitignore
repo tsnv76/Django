@@ -9,4 +9,7 @@
 /geekshop/basketapp/migrations/
 /geekshop/geekshop/migrations/
 /geekshop/mainapp/migrations/
+
 /env/
+~/.env
+!/geekshop/geekshop/.env
