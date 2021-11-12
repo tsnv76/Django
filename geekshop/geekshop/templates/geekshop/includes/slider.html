@@ -1,14 +1,7 @@
 {% load static %}
 <div class="slider">
-			<div class="header clearfix">
-				<a href="/" class="logo"></a>
-				<ul class="menu">
-					<li><a href="{% url 'main' %} class="{% if request == '/' %}active{% endif %}">домой</a></li>
-					<li><a href="{% url 'products:main' %}">продукты</a></li>
-					<li><a href="{% url 'contacts' %}">контакты</a></li>
-				</ul>
-				<a href="#" class="search"></a>
-			</div>
+	{% include 'geekshop/includes/inc_main_menu.html' %}
+
 			<div class="text-slider">
 				<!--<h3 class="green">тенденции {% now "Y"%} - добрый день, {{ user.first_name|default:"Noname" }} {{ user.first_name }} </h3>-->
 				<h3 class="green">тенденции {% now "Y"%}</h3>
