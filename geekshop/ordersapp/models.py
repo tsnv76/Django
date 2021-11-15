@@ -61,7 +61,17 @@ class Order(models.Model):
         self.save()
 
 
+class OrderItemQuerySet(models.QuerySet):
+    def delete(self):
+        for object in self:
+            object.product.quantity += object.quantity
+            object.product.save()
+        super(OrderItemQuerySet, self).delete()
+
+
 class OrderItem(models.Model):
+    object = OrderItemQuerySet.as_manager()
+
     order = models.ForeignKey(
         Order,
         related_name='orderitems',
