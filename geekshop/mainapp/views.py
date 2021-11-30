@@ -60,7 +60,8 @@ def products(request, pk=None, page=1):
 
     hot_product = get_hot_product()
     same_products = get_same_products(hot_product)
-    products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
+    products = Product.objects.filter(is_active=True, category__is_active=True). \
+                   order_by('price').select_related('category')[:3]
 
     context = {
         'title': title,
