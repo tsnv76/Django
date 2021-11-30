@@ -42,7 +42,7 @@ window.onload = function () {
         });
 
         function orderSummaryUpdate(orderitem_price, delta_quantity){
-            delta_cost = orderitem_price + delta_quantity;
+            delta_cost = orderitem_price * delta_quantity;
             order_total_price = Number((order_total_price + delta_cost).toFixed(2));
 
             order_total_quantity = order_total_quantity + delta_quantity;
@@ -65,6 +65,10 @@ window.onload = function () {
        prefix: 'orderitems',
        removed: deleteOrderItem
     });
+    $('.add-row').on('click', function (){
+        quantity_arr.push(0);
+        price_arr.push(0);
+    })
 
     if(!order_total_quantity){
         orderSummaryRecalc();
@@ -83,7 +87,7 @@ window.onload = function () {
 
     }
 
-    $('.order_form select').change(function (){
+    $('.order_form').on('change', 'select', function (){
         let target = event.target;
         orderitem_num = parseInt(target.name.match(/\d+/)[0]);
         let orderitem_product_pk = target.options[target.selectedIndex].value;
