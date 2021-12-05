@@ -1,26 +1,22 @@
 [
   {
-      "name": "Столы",
-      "description": "Отличные столы"
-  },
-  {
       "name": "Стулья",
       "description": ""
   },
   {
-      "name": "Комоды",
+      "name": "Дом",
       "description": ""
   },
   {
-      "name": "Дом",
-      "description": "Мебель для дома"
-  },
-  {
       "name": "Офис",
-      "description": "Мебель для офиса"
+      "description": ""
   },
   {
-    "name": "Модерн",
-    "description": "Современная удобная мебель"
+      "name": "Модерн",
+      "description": ""
+  },
+  {
+      "name": "Классика",
+      "description": ""
   }
 ]

@@ -2,17 +2,7 @@
 {% load static %}
 {% block content %}
 		<div class="hero">
-			<div class="header clearfix">
-				<a href="/" class="logo"></a>
-				<ul class="menu">
-					<li><a href="/">домой</a></li>
-					<li><a href="/products/">продукты</a></li>
-					<li><a href="/contacts/" class="active">контакты</a></li>
-
-				</ul>
-				<a href="#" class="search"></a>
-                <a href="#" class="basket"></a>
-			</div>
+			{% include 'geekshop/includes/inc_main_menu.html' %}
 			<h1>наши контакты</h1>
 		</div>
 
