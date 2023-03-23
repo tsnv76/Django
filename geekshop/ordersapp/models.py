@@ -62,6 +62,7 @@ class Order(models.Model):
 
 
 class OrderItemQuerySet(models.QuerySet):
+
     def delete(self):
         for object in self:
             object.product.quantity += object.quantity
@@ -70,7 +71,7 @@ class OrderItemQuerySet(models.QuerySet):
 
 
 class OrderItem(models.Model):
-    object = OrderItemQuerySet.as_manager()
+    objects = OrderItemQuerySet.as_manager()
 
     order = models.ForeignKey(
         Order,
