@@ -1,3 +1,4 @@
+from django.db.models import F, Q
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
@@ -23,13 +24,13 @@ def basket_add(request, pk):
         return HttpResponseRedirect(reverse('products:detail', args=[pk]))
     product = get_object_or_404(Product, pk=pk)
 
-    basket = Basket.objects.filter(user=request.user, product=product).first()
+    old_basket_items = Basket.objects.filter(user=request.user, product=product).first()
 
-    if not basket:
-        basket = Basket(user=request.user, product=product)
-
-    basket.quantity += 1
-    basket.save()
+    if not old_basket_items:
+        old_basket_items[0].quantity += 1
+        old_basket_items[0].save()
+    else:
+        old_basket_items[0].quantity = F('quantity') + 1
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
